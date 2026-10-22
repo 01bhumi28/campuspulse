@@ -8,75 +8,65 @@ A modern, responsive, client-side web application prototype built for academic p
 
 You have multiple instant ways to launch the prototype without installing external software:
 
-### Option 1: Direct Double-Click (Easiest & Fastest)
-1. Navigate to the project folder (`d:\ANTIGRAVITY\`).
-2. Simply double-click **`index.html`** or right-click and choose **"Open with"** -> **Google Chrome / Microsoft Edge / Brave / Firefox**.
-3. The application will immediately load and be completely interactive.
+### Option 1: Full-Stack Mode (Node.js Express REST API) - Recommended
+1. Double-click **`start-backend.bat`** (or open terminal in `server/` and run `npm start`).
+2. It boots up the Express REST API at `http://localhost:5000` with full persistent JSON data store and automatically opens the browser.
 
-### Option 2: One-Click Local Server (`serve.bat`)
-1. Double-click the included **`serve.bat`** file in the project folder.
-2. It automatically launches a local HTTP web server at `http://localhost:8000` using Windows PowerShell's built-in networking (zero external dependencies required) and automatically opens your browser!
+### Option 2: Direct Double-Click (Zero-Dependency Client Prototype)
+1. Double-click **`index.html`** or right-click and choose **"Open with"** -> Chrome / Edge / Brave / Firefox.
+2. The application will immediately load with full interactive client simulation.
 
-### Option 3: PowerShell Command
-Open PowerShell inside the folder and run:
-```powershell
-Start-Process "index.html"
-```
-Or to run with the built-in HTTP server:
-```powershell
-powershell -ExecutionPolicy Bypass -File .\serve.ps1
-```
-
----
-
-## ✨ Key Features & Demo Checklist (For Project Evaluators / Viva)
-
-| Feature | Description | How to Test in Demo |
-| :--- | :--- | :--- |
-| 📊 **Command Center Dashboard** | Overview of GPA, attendance rate, degree credits, and upcoming assignments with Chart.js visualization. | Click **Dashboard** in the sidebar. Hover over the GPA chart. |
-| 📚 **Course Hub & Syllabus** | Enrolled subjects with credit count, professor details, and progress bars. | Click **Course Hub**, filter by *Core* / *AI Specialization*, and click **"Syllabus"**. |
-| 📋 **Interactive Kanban Board** | 4-stage assignment tracker (Pending, In Progress, Submitted, Graded). | Click **Assignments**, then click **"Submit Work"** or **"Submit"** on any task to test simulated file upload. |
-| 📅 **Weekly Timetable** | Day-by-day class schedule with room allocations and lecture type tags. | Click **Lecture Timetable**, switch days between Monday through Friday. |
-| 🧮 **Attendance & Skip Calculator** | Subject-wise breakdown plus an interactive calculator that computes exactly how many classes you can afford to skip while staying $\ge 75\%$. | Click **Attendance & Analytics**, adjust the numbers in the calculator to see dynamic calculations. |
-| 🎪 **Campus Life & Event RSVP** | Tech hackathons, guest lectures, and career expos with real-time attendee increment and celebratory toasts. | Click **Campus Life**, click **"Register & RSVP Now"** on HackNova or DeepMind Tech Talk. |
-| 🪪 **Digital Holographic ID Card** | Official university student identity badge with holographic sheen, barcode, QR code, and print capability. | Click **Student ID & Profile**, then click **"Display ID Hologram"** or use the **"Print Card"** button. |
-| 🔍 **Global Spotlight Search** | Fast search across courses, assignments, and campus events. | Press <kbd>Ctrl</kbd> + <kbd>K</kbd> (or <kbd>Cmd</kbd> + <kbd>K</kbd>) or type in the top search bar. |
-| 🎨 **Theme & Accent Customizer** | Instant Dark/Light mode toggle + dynamic color palette selector (Indigo, Emerald, Violet, Rose, Amber, Cyan). | Click the **Moon / Sun icon** in the topbar or navigate to **Prototype Settings**. |
-| 🔔 **Notification Center** | Dropdown alert tray with live unread counter, badge animations, and toast notifications on all interactions. | Click the **Bell icon** in the top header. |
+### Option 3: Team Collaboration Sync (`sync.bat`)
+Before making changes or pushing, double-click **`sync.bat`** to safely pull latest commits from team members with git rebase and avoid merge conflicts.
 
 ---
 
 ## 📁 Project Architecture & File Structure
 
 ```
-d:\ANTIGRAVITY\
-├── index.html          # Main semantic HTML5 application shell & modals
+campuspulse/
+├── index.html              # Main semantic HTML5 application shell & modals
 ├── css/
-│   └── styles.css      # Custom animations, glassmorphism, ID shimmer & theme variables
+│   └── styles.css          # Glassmorphism, animations, ID shimmer & theme variables
 ├── js/
-│   ├── data.js         # Realistic college mock database (student, courses, events, grades)
-│   └── app.js          # Reactive state manager, dynamic router, Chart.js engine & toasts
-├── serve.ps1           # Built-in zero-dependency Windows HTTP web server script
-├── serve.bat           # One-click Windows batch launcher
-└── README.md           # Documentation and presentation guide
+│   ├── data.js             # Client fallback mock database (courses, student, events)
+│   ├── api.js              # REST API bridge with graceful offline fallback
+│   └── app.js              # State manager, dynamic router, Chart.js engine & toasts
+├── server/                 # Node.js + Express REST API Backend
+│   ├── server.js           # Express app, CORS, request logger & static server
+│   ├── package.json        # Express, Cors, Dotenv dependencies
+│   ├── data/
+│   │   ├── db.json         # Persisted database storage
+│   │   └── store.js        # File-based DB read/write helper
+│   └── routes/
+│       ├── student.js      # Student profile & stats endpoints
+│       ├── courses.js      # Courses & syllabus endpoints
+│       ├── assignments.js  # Assignment CRUD & submission endpoints
+│       ├── schedule.js     # Timetable endpoints
+│       ├── events.js       # Campus events & RSVP endpoints
+│       └── notifications.js# Alert notifications & mark-read
+├── start-backend.bat       # One-click launcher for Express REST API
+├── sync.bat                # Safe team git pull & rebase helper
+├── serve.bat / serve.ps1   # Zero-dependency local PowerShell web server
+└── README.md               # Documentation and presentation guide
 ```
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **HTML5 & Semantic Markup**: Accessible container layouts, semantic tags.
-- **Tailwind CSS (via CDN)**: Modern styling, flex/grid layouts, responsive breakpoints.
-- **Vanilla JavaScript (ES6+)**: Zero build step needed, instant client-side execution.
-- **Chart.js**: Dynamic, interactive canvas-based performance tracking and donut charts.
-- **Lucide Icons**: Crisp vector UI icons.
-- **Local Storage API**: Persists dark/light mode preference, custom accent colors, and quick notes.
+- **Frontend**: HTML5 Semantic Layout, Tailwind CSS (via CDN), Vanilla JavaScript (ES6+).
+- **Backend**: Node.js & Express REST API with full CORS support.
+- **Database**: Persistent JSON document storage (`server/data/db.json`).
+- **Data Visualizations**: Chart.js for real-time GPA trends and attendance analytics.
+- **Icons**: Lucide Icons vector system.
+- **Deployment**: Live on GitHub Pages (`https://01bhumi28.github.io/campuspulse/`).
 
 ---
 
 ## 🎓 Talking Points for Your Viva / Presentation
 
-1. **Client-Side Reactive Architecture**: The application maintains a unified state object (`AppState`), which ensures that submitting an assignment or changing an RSVP immediately re-evaluates statistics across the dashboard without reloading the page.
-2. **Real-World University Compliance**: Designed around actual college regulations, such as the mandatory 75% attendance threshold with automated warnings and a safe-margin skip calculator.
-3. **Responsive Mobile-First Design**: Adapts cleanly from smartphone screens (collapsible navigation drawer) up to wide 4K displays.
-4. **Extensible Data Schema**: The structure in `js/data.js` mimics standard RESTful API JSON responses, making it straightforward to connect to a backend like Node.js/Express, Django, or Firebase in future project phases.
+1. **Full-Stack RESTful Architecture**: Integrated with a Node.js Express backend offering REST endpoints for student records, assignments, and campus events, with automatic fallback for static hosting.
+2. **Persistent Document Storage**: Real assignment submissions and RSVP updates are saved to the persistent database store and survive server restarts.
+3. **University Compliance Logic**: Features a dynamic safe-margin skip calculator based on the official 75% attendance threshold.
+4. **Team-Ready Modular Design**: Separated API routes and sync scripts allowing multiple team members to build features simultaneously.

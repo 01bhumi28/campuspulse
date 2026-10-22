@@ -66,8 +66,12 @@
                         <div class="flex items-center gap-2">
                             <span class="text-base font-extrabold tracking-tight text-gray-900 dark:text-white">CampusPulse</span>
                             <span class="hidden sm:inline-block text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-950/80 dark:text-indigo-300">
-                                Prototype v2.6
+                                v2.6
                             </span>
+                            <div id="apiStatusBadge" class="hidden sm:inline-flex items-center gap-1.5 text-[10px] px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700">
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                                <span>Checking API...</span>
+                            </div>
                         </div>
                         <span class="hidden sm:block text-[11px] text-gray-500 dark:text-gray-400 font-medium">Smart Academic Suite</span>
                     </div>
@@ -456,6 +460,7 @@
 
     <!-- Scripts -->
     <script src="js/data.js"></script>
+    <script src="js/api.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

@@ -22,13 +22,27 @@ const AppState = {
 };
 
 // Initialize App
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     initTheme();
     initAccent();
     initEventListeners();
     initLucide();
     renderCurrentView();
     updateNotificationBadge();
+
+    // Auto-detect and sync with Node.js Express REST API
+    if (window.CampusPulseAPI) {
+        const isConnected = await window.CampusPulseAPI.checkConnection();
+        if (isConnected) {
+            const remoteData = await window.CampusPulseAPI.fetchInitialData();
+            if (remoteData) {
+                AppState.data = remoteData;
+                renderCurrentView();
+                updateNotificationBadge();
+                showToast('API Connected', 'Live academic database synchronized via Node.js Express backend.', 'success');
+            }
+        }
+    }
 });
 
 // Re-run Lucide icon replacement whenever DOM updates
@@ -1098,6 +1112,10 @@ function toggleEventRsvp(eventId) {
         showToast('RSVP Cancelled', `Your reservation for "${event.title}" has been withdrawn.`, 'info');
     }
 
+    if (window.CampusPulseAPI && window.CampusPulseAPI.isOnline) {
+        window.CampusPulseAPI.toggleRsvp(eventId);
+    }
+
     renderCurrentView();
 }
 
@@ -1548,6 +1566,10 @@ function handleAssignmentSubmission(event) {
 
     // Re-render
     renderCurrentView();
+
+    if (window.CampusPulseAPI && window.CampusPulseAPI.isOnline) {
+        window.CampusPulseAPI.submitAssignment(asgId, fileName);
+    }
 }
 
 function viewCourseDetails(courseId) {
@@ -1736,6 +1758,10 @@ function markAllNotificationsRead() {
     updateNotificationBadge();
     renderNotificationsList();
     showToast('Notifications Cleared', 'All alerts marked as read', 'info');
+
+    if (window.CampusPulseAPI && window.CampusPulseAPI.isOnline) {
+        window.CampusPulseAPI.markAllNotificationsRead();
+    }
 }
 
 function updateNotificationBadge() {
