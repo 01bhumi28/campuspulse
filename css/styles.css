@@ -1,0 +1,225 @@
+/* Custom Styles & Animation for CampusPulse / NexusEdu College Project */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    /* Default Accent Theme: Indigo / Electric Blue */
+    --primary: 99 102 241;
+    --primary-hover: 79 70 229;
+    --accent-glow: rgba(99, 102, 241, 0.25);
+}
+
+[data-theme-color="emerald"] {
+    --primary: 16 185 129;
+    --primary-hover: 5 150 105;
+    --accent-glow: rgba(16, 185, 129, 0.25);
+}
+
+[data-theme-color="violet"] {
+    --primary: 139 92 246;
+    --primary-hover: 124 58 237;
+    --accent-glow: rgba(139, 92, 246, 0.25);
+}
+
+[data-theme-color="rose"] {
+    --primary: 244 63 94;
+    --primary-hover: 225 29 72;
+    --accent-glow: rgba(244, 63, 94, 0.25);
+}
+
+[data-theme-color="amber"] {
+    --primary: 245 158 11;
+    --primary-hover: 217 119 6;
+    --accent-glow: rgba(245, 158, 11, 0.25);
+}
+
+[data-theme-color="cyan"] {
+    --primary: 6 182 212;
+    --primary-hover: 8 145 178;
+    --accent-glow: rgba(6, 182, 212, 0.25);
+}
+
+body {
+    font-family: var(--font-sans);
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.4);
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.7);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: rgba(107, 114, 128, 0.4);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.6);
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(229, 231, 235, 0.7);
+}
+
+.dark .glass-panel {
+    background: rgba(17, 24, 39, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(55, 65, 81, 0.6);
+}
+
+.glass-nav {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+}
+
+.dark .glass-nav {
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(30, 41, 59, 0.8);
+}
+
+/* Card Hover Lift */
+.card-hover {
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+}
+
+.dark .card-hover:hover {
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* ID Card Holographic Effect */
+.id-card-sheen {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.15) 35%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.12) 65%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+/* Modal Animations */
+.modal-enter {
+    animation: modalPop 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Toast Animations */
+.toast-slide-in {
+    animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.toast-slide-out {
+    animation: toastSlideOut 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastSlideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(16px) scale(0.95);
+    }
+}
+
+/* Pulse beacon */
+.status-beacon {
+    position: relative;
+    display: inline-flex;
+}
+
+.status-beacon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    background-color: inherit;
+    animation: beaconPulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes beaconPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.75;
+    }
+    70%, 100% {
+        transform: scale(2.4);
+        opacity: 0;
+    }
+}
+
+/* Print styles for Student ID */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #idCardModal, #idCardModal * {
+        visibility: visible;
+    }
+    #idCardModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white !important;
+    }
+    .no-print {
+        display: none !important;
+    }
+}

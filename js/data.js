@@ -1,0 +1,454 @@
+// Initial college project data store
+const initialData = {
+    student: {
+        name: "Akash Sharma",
+        id: "CS-2024-8842",
+        role: "Student (Undergraduate)",
+        major: "B.Tech Computer Science & AI",
+        batch: "2023 - 2027",
+        semester: "6th Semester",
+        university: "Imperial Institute of Science & Technology",
+        department: "Department of Computer Science & Engineering",
+        email: "akash.sharma@campus.edu",
+        phone: "+91 98765 43210",
+        gpa: 3.88,
+        totalCredits: 92,
+        requiredCredits: 128,
+        attendanceRate: 91.2,
+        bloodGroup: "O+ve",
+        emergencyContact: "+91 98765 00000 (Father)",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80"
+    },
+    
+    stats: [
+        {
+            id: "gpa",
+            label: "Cumulative GPA",
+            value: "3.88",
+            sub: "Top 5% in Dept",
+            trend: "+0.12 this term",
+            trendUp: true,
+            icon: "award",
+            color: "from-blue-500 to-indigo-600",
+            bgLight: "bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300"
+        },
+        {
+            id: "attendance",
+            label: "Attendance Rate",
+            value: "91.2%",
+            sub: "Min threshold: 75%",
+            trend: "+1.8% vs last month",
+            trendUp: true,
+            icon: "user-check",
+            color: "from-emerald-500 to-teal-600",
+            bgLight: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300"
+        },
+        {
+            id: "assignments",
+            label: "Active Tasks",
+            value: "4 Pending",
+            sub: "2 Due this week",
+            trend: "8 Completed this term",
+            trendUp: false,
+            icon: "clipboard-list",
+            color: "from-amber-500 to-orange-600",
+            bgLight: "bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300"
+        },
+        {
+            id: "credits",
+            label: "Degree Credits",
+            value: "92 / 128",
+            sub: "71.8% Completed",
+            trend: "On track to graduate",
+            trendUp: true,
+            icon: "graduation-cap",
+            color: "from-purple-500 to-pink-600",
+            bgLight: "bg-purple-50 text-purple-700 dark:bg-purple-950/50 dark:text-purple-300"
+        }
+    ],
+
+    courses: [
+        {
+            id: "CS301",
+            code: "CS 301",
+            title: "Distributed Cloud Systems & Microservices",
+            instructor: "Dr. Elena Vance",
+            instructorRole: "Professor, Cloud Computing Lab",
+            credits: 4,
+            department: "CSE Core",
+            attendance: { attended: 26, total: 28, percent: 92.8 },
+            color: "blue",
+            progress: 75,
+            currentGrade: "A",
+            days: ["Mon", "Wed", "Fri"],
+            time: "09:00 AM - 10:30 AM",
+            room: "Seminar Hall 4A",
+            syllabus: [
+                "Cap Theorem & Consensus Algorithms (Raft, Paxos)",
+                "gRPC, Message Queues & Event Streaming",
+                "Kubernetes Cluster Architecture & Orchestration",
+                "Distributed Caching, Sharding & High Availability"
+            ],
+            materialsCount: 14,
+            nextClass: "Mon, 09:00 AM"
+        },
+        {
+            id: "CS304",
+            code: "CS 304",
+            title: "Deep Learning & Neural Architectures",
+            instructor: "Prof. Marcus Chen",
+            instructorRole: "Assoc. Professor, AI Center",
+            credits: 4,
+            department: "AI & ML Specialization",
+            attendance: { attended: 24, total: 26, percent: 92.3 },
+            color: "purple",
+            progress: 82,
+            currentGrade: "A+",
+            days: ["Tue", "Thu"],
+            time: "11:00 AM - 12:45 PM",
+            room: "AI Lab 3, Tech Tower",
+            syllabus: [
+                "Backpropagation & Optimizer Math (AdamW, SGD)",
+                "Convolutional Networks & Vision Transformers",
+                "Sequence Modeling: LSTMs to Attention & LLMs",
+                "Model Pruning, Quantization & Edge Deployment"
+            ],
+            materialsCount: 22,
+            nextClass: "Tomorrow, 11:00 AM"
+        },
+        {
+            id: "CS309",
+            code: "CS 309",
+            title: "Cyber-Physical Systems & Applied Cryptography",
+            instructor: "Dr. Sarah Jenkins",
+            instructorRole: "Head, Information Security Dept",
+            credits: 3,
+            department: "Cyber Security Core",
+            attendance: { attended: 19, total: 22, percent: 86.4 },
+            color: "emerald",
+            progress: 68,
+            currentGrade: "B+",
+            days: ["Mon", "Wed"],
+            time: "02:00 PM - 03:30 PM",
+            room: "Cyber Range Lab 102",
+            syllabus: [
+                "Asymmetric Encryption, Elliptic Curves & Post-Quantum",
+                "Zero Trust Architecture & Identity Federation",
+                "IoT Protocols Security (CoAP, MQTT, CAN bus)",
+                "Memory Corruption & Exploit Mitigation"
+            ],
+            materialsCount: 9,
+            nextClass: "Wed, 02:00 PM"
+        },
+        {
+            id: "SE320",
+            code: "SE 320",
+            title: "DevOps & Modern Software Engineering Practices",
+            instructor: "Prof. Rajiv Mehta",
+            instructorRole: "Industry Chair, Software Eng.",
+            credits: 3,
+            department: "Software Systems",
+            attendance: { attended: 20, total: 20, percent: 100.0 },
+            color: "orange",
+            progress: 90,
+            currentGrade: "A",
+            days: ["Tue", "Thu"],
+            time: "02:00 PM - 03:30 PM",
+            room: "Design Studio 5",
+            syllabus: [
+                "Test-Driven Development & Continuous Integration",
+                "Infrastructure as Code (Terraform, Ansible)",
+                "Observability: OpenTelemetry, Prometheus & Grafana",
+                "Site Reliability Engineering & Chaos Testing"
+            ],
+            materialsCount: 17,
+            nextClass: "Tomorrow, 02:00 PM"
+        },
+        {
+            id: "MAT312",
+            code: "MAT 312",
+            title: "Advanced Stochastic Processes & Optimization",
+            instructor: "Prof. David Krane",
+            instructorRole: "Professor of Mathematics",
+            credits: 3,
+            department: "Applied Math Elective",
+            attendance: { attended: 18, total: 22, percent: 81.8 },
+            color: "rose",
+            progress: 70,
+            currentGrade: "A-",
+            days: ["Fri"],
+            time: "03:30 PM - 06:00 PM",
+            room: "Lecture Theater B",
+            syllabus: [
+                "Markov Chains & Transition Probability Matrices",
+                "Poisson Processes & Renewal Theory",
+                "Convex Optimization & Lagrange Multipliers",
+                "Monte Carlo Methods in Risk Simulation"
+            ],
+            materialsCount: 11,
+            nextClass: "Fri, 03:30 PM"
+        }
+    ],
+
+    assignments: [
+        {
+            id: "ASG-101",
+            title: "Raft Consensus Cluster Implementation",
+            courseId: "CS301",
+            courseCode: "CS 301",
+            dueDate: "Tomorrow, 11:59 PM",
+            dueIso: "2026-10-21T23:59:00",
+            status: "pending", // pending, in-progress, submitted, graded
+            priority: "high",
+            maxMarks: 100,
+            marksReceived: null,
+            description: "Implement leader election and log replication with heartbeat mechanism in Go or Python. Include unit tests for split-vote conditions.",
+            submissionFile: null,
+            feedback: null
+        },
+        {
+            id: "ASG-102",
+            title: "Vision Transformer vs ResNet50 Evaluation",
+            courseId: "CS304",
+            courseCode: "CS 304",
+            dueDate: "In 3 days (Oct 23)",
+            dueIso: "2026-10-23T23:59:00",
+            status: "in-progress",
+            priority: "medium",
+            maxMarks: 50,
+            marksReceived: null,
+            description: "Fine-tune both models on CIFAR-100 dataset. Plot convergence curves, inference latency vs accuracy trade-offs.",
+            submissionFile: "vision_experiment_checkpoint.ipynb",
+            feedback: null
+        },
+        {
+            id: "ASG-103",
+            title: "Automated Multi-Stage CI/CD GitHub Action",
+            courseId: "SE320",
+            courseCode: "SE 320",
+            dueDate: "In 5 days (Oct 25)",
+            dueIso: "2026-10-25T23:59:00",
+            status: "in-progress",
+            priority: "high",
+            maxMarks: 100,
+            marksReceived: null,
+            description: "Create workflow YAML pipeline with linting, unit tests, Docker container building, vulnerability scanning with Trivy, and deployment.",
+            submissionFile: null,
+            feedback: null
+        },
+        {
+            id: "ASG-104",
+            title: "Microservices Security Threat Matrix",
+            courseId: "CS309",
+            courseCode: "CS 309",
+            dueDate: "Submitted 2 days ago",
+            dueIso: "2026-10-18T18:00:00",
+            status: "submitted",
+            priority: "medium",
+            maxMarks: 50,
+            marksReceived: null,
+            description: "STRIDE threat modeling for healthcare microservices communicating across public cloud VPCs.",
+            submissionFile: "Security_Audit_Report_Akash.pdf",
+            feedback: "Under evaluation by teaching assistant."
+        },
+        {
+            id: "ASG-105",
+            title: "Markov Decision Process for Portfolio Balancing",
+            courseId: "MAT312",
+            courseCode: "MAT 312",
+            dueDate: "Completed Last Week",
+            dueIso: "2026-10-12T17:00:00",
+            status: "graded",
+            priority: "low",
+            maxMarks: 100,
+            marksReceived: 96,
+            description: "Mathematical formulation and Python simulation of optimal asset allocation under stochastic volatility.",
+            submissionFile: "MAT312_Akash_ProjectFinal.pdf",
+            feedback: "Outstanding rigor in derivation of value iteration convergence bounds. Full marks for algorithm formulation."
+        }
+    ],
+
+    schedule: [
+        {
+            day: "Monday",
+            items: [
+                { time: "09:00 AM - 10:30 AM", code: "CS 301", title: "Distributed Cloud Systems", room: "Seminar Hall 4A", type: "Lecture", color: "blue" },
+                { time: "11:00 AM - 01:00 PM", code: "CS 304", title: "Deep Learning Lab (Batch A)", room: "AI Lab 3", type: "Lab", color: "purple" },
+                { time: "02:00 PM - 03:30 PM", code: "CS 309", title: "Cyber-Physical Systems", room: "Cyber Range 102", type: "Lecture", color: "emerald" },
+                { time: "04:00 PM - 05:00 PM", code: "PROJ", title: "Capstone Mentorship Hour", room: "Faculty Cabin 312", type: "Mentorship", color: "amber" }
+            ]
+        },
+        {
+            day: "Tuesday",
+            items: [
+                { time: "11:00 AM - 12:45 PM", code: "CS 304", title: "Deep Learning & Neural Architectures", room: "Tech Tower Aud 1", type: "Lecture", color: "purple" },
+                { time: "02:00 PM - 03:30 PM", code: "SE 320", title: "DevOps & Software Engineering", room: "Design Studio 5", type: "Lecture", color: "orange" },
+                { time: "04:00 PM - 05:30 PM", code: "CLUB", title: "Google Developer Student Club Meetup", room: "Student Activity Center", type: "Activity", color: "indigo" }
+            ]
+        },
+        {
+            day: "Wednesday",
+            items: [
+                { time: "09:00 AM - 10:30 AM", code: "CS 301", title: "Distributed Cloud Systems", room: "Seminar Hall 4A", type: "Lecture", color: "blue" },
+                { time: "11:30 AM - 01:00 PM", code: "SE 320", title: "DevOps K8s Cluster Hands-on", room: "Server Room Lab B", type: "Lab", color: "orange" },
+                { time: "02:00 PM - 03:30 PM", code: "CS 309", title: "Cyber-Physical Systems", room: "Cyber Range 102", type: "Lecture", color: "emerald" }
+            ]
+        },
+        {
+            day: "Thursday",
+            items: [
+                { time: "11:00 AM - 12:45 PM", code: "CS 304", title: "Deep Learning & Neural Architectures", room: "Tech Tower Aud 1", type: "Lecture", color: "purple" },
+                { time: "02:00 PM - 03:30 PM", code: "SE 320", title: "DevOps & Software Engineering", room: "Design Studio 5", type: "Lecture", color: "orange" },
+                { time: "04:00 PM - 06:00 PM", code: "RESEARCH", title: "Autonomous Agents Research Group", room: "Innovation Hub", type: "Research", color: "teal" }
+            ]
+        },
+        {
+            day: "Friday",
+            items: [
+                { time: "09:00 AM - 10:30 AM", code: "CS 301", title: "Distributed Cloud Systems", room: "Seminar Hall 4A", type: "Lecture", color: "blue" },
+                { time: "01:30 PM - 03:00 PM", code: "LIB", title: "Library Research & Seminar Prep", room: "Central Digital Library", type: "Self Study", color: "gray" },
+                { time: "03:30 PM - 06:00 PM", code: "MAT 312", title: "Advanced Stochastic Processes", room: "Lecture Theater B", type: "Lecture", color: "rose" }
+            ]
+        }
+    ],
+
+    events: [
+        {
+            id: "EVT-201",
+            title: "HackNova 2026: 36-Hour National AI Hackathon",
+            category: "Competition",
+            date: "Oct 28 - 29, 2026",
+            time: "Starts 09:00 AM",
+            venue: "Innovation Center & Grand Arena",
+            attendees: 384,
+            isRsvpd: true,
+            organizer: "ACM Student Chapter",
+            prize: "$10,000 Cash Pool + Cloud Credits",
+            image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
+            tags: ["AI/ML", "Cloud", "Hardware", "Cash Prizes"]
+        },
+        {
+            id: "EVT-202",
+            title: "DeepMind Tech Talk: Reasoning In Next-Gen Foundation Models",
+            category: "Guest Lecture",
+            date: "Tomorrow (Oct 21)",
+            time: "04:30 PM - 06:00 PM",
+            venue: "Auditorium A & Live Streamed",
+            attendees: 512,
+            isRsvpd: false,
+            organizer: "AI Research Guild",
+            prize: "Open Q&A + Networking Reception",
+            image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80",
+            tags: ["Keynote", "Deep Learning", "Networking"]
+        },
+        {
+            id: "EVT-203",
+            title: "Campus Career Expo & Tech Internship Fair 2026",
+            category: "Career",
+            date: "Nov 04, 2026",
+            time: "10:00 AM - 05:00 PM",
+            venue: "Sports Complex Pavillion",
+            attendees: 890,
+            isRsvpd: true,
+            organizer: "Placement & Corporate Relations Cell",
+            prize: "Over 65 Tech Companies Hiring",
+            image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=600&q=80",
+            tags: ["Placements", "Internships", "Interviews"]
+        },
+        {
+            id: "EVT-204",
+            title: "Open Source Bug Bash & Pizza Night",
+            category: "Workshop",
+            date: "Friday, Oct 24",
+            time: "06:00 PM - 09:00 PM",
+            venue: "Open Co-Working Commons, 2nd Fl",
+            attendees: 94,
+            isRsvpd: false,
+            organizer: "Linux Users Group",
+            prize: "Free Pizza + Swag Packs",
+            image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80",
+            tags: ["OpenSource", "GitHub", "Community"]
+        }
+    ],
+
+    announcements: [
+        {
+            id: "ANN-1",
+            title: "Mid-Term Examination Schedule Published",
+            date: "Today at 02:15 PM",
+            department: "Controller of Examinations",
+            priority: "high",
+            excerpt: "The tentative schedule for Mid-Semester Examinations (Fall 2026) has been uploaded. Please verify conflict reports before Friday."
+        },
+        {
+            id: "ANN-2",
+            title: "Campus High-Performance Computing (HPC) Cluster Access",
+            date: "Yesterday",
+            department: "Advanced Computing Lab",
+            priority: "medium",
+            excerpt: "GPU cluster nodes with NVIDIA H100 are now accessible for final-year students with active project approval."
+        },
+        {
+            id: "ANN-3",
+            title: "Library Extended Hours for Final Project Submissions",
+            date: "2 days ago",
+            department: "Central University Library",
+            priority: "normal",
+            excerpt: "The Central Library and Digital Study Lounges will operate 24x7 starting next Monday through exam week."
+        }
+    ],
+
+    notifications: [
+        {
+            id: "NOTIF-1",
+            title: "Assignment Graded: Stochastic Processes",
+            text: "Prof. David Krane awarded 96/100 on Assignment #3.",
+            time: "10 mins ago",
+            icon: "check-circle",
+            color: "text-emerald-500",
+            unread: true
+        },
+        {
+            id: "NOTIF-2",
+            title: "Urgent: Cloud Systems Assignment Due",
+            text: "'Raft Consensus Cluster' deadline is tomorrow at 11:59 PM.",
+            time: "1 hour ago",
+            icon: "alert-triangle",
+            color: "text-amber-500",
+            unread: true
+        },
+        {
+            id: "NOTIF-3",
+            title: "RSVP Confirmed for HackNova 2026",
+            text: "Your ticket & team badge have been generated. Team #144.",
+            time: "3 hours ago",
+            icon: "ticket",
+            color: "text-blue-500",
+            unread: false
+        },
+        {
+            id: "NOTIF-4",
+            title: "Room Change for Cyber Security",
+            text: "Wednesday session will take place in Cyber Range Lab 102.",
+            time: "Yesterday",
+            icon: "map-pin",
+            color: "text-purple-500",
+            unread: false
+        }
+    ],
+
+    performanceData: {
+        semesters: ["Sem 1", "Sem 2", "Sem 3", "Sem 4", "Sem 5", "Sem 6 (Est)"],
+        sgpa: [3.70, 3.78, 3.82, 3.85, 3.87, 3.92],
+        cgpa: [3.70, 3.74, 3.77, 3.79, 3.81, 3.88],
+        attendanceBreakdown: {
+            present: 91,
+            late: 5,
+            absent: 4
+        },
+        weeklyStudyHours: {
+            labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            hours: [6.5, 7.0, 5.5, 8.0, 6.0, 9.5, 4.0]
+        }
+    }
+};
