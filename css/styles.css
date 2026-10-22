@@ -223,3 +223,49 @@ body {
         display: none !important;
     }
 }
+
+/* ==========================================================================
+   Smart Student Radar Styles & Animations
+   ========================================================================== */
+.radar-sweep-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.radar-sweep-container::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg at 50% 50%, rgba(99, 102, 241, 0.15) 0deg, rgba(99, 102, 241, 0) 60deg, transparent 360deg);
+    animation: radarSweep 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes radarSweep {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.radar-glow-urgent {
+    box-shadow: 0 0 20px -4px rgba(244, 63, 94, 0.25);
+    border-color: rgba(244, 63, 94, 0.4) !important;
+}
+
+.radar-glow-warning {
+    box-shadow: 0 0 20px -4px rgba(245, 158, 11, 0.25);
+    border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+.task-item-done {
+    opacity: 0.6;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.task-item-done .task-title {
+    text-decoration: line-through;
+    color: rgb(156 163 175);
+}
+

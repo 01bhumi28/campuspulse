@@ -124,6 +124,7 @@ function navigateTo(viewName) {
     // Update Header Breadcrumb Title
     const titleMap = {
         'dashboard': 'Student Command Center',
+        'radar': 'CampusPulse Smart Student Radar - Priority & Daily Action Engine',
         'courses': 'Enrolled Courses & Academic Curriculum',
         'assignments': 'Assignments & Project Trackers',
         'schedule': 'Weekly Lecture Timetable',
@@ -178,6 +179,14 @@ function renderCurrentView() {
         case 'dashboard':
             container.innerHTML = getDashboardViewHTML();
             initDashboardComponents();
+            break;
+        case 'radar':
+            if (window.RadarEngine) {
+                container.innerHTML = window.RadarEngine.getRadarViewHTML();
+                window.RadarEngine.initRadarComponents();
+            } else {
+                container.innerHTML = `<div class="p-8 text-center text-gray-500">Loading Smart Student Radar...</div>`;
+            }
             break;
         case 'courses':
             container.innerHTML = getCoursesViewHTML();
@@ -280,6 +289,45 @@ function getDashboardViewHTML() {
                     </div>
                 </div>
             `).join('')}
+        </div>
+
+        <!-- Smart Student Radar Quick Banner -->
+        <div class="glass-panel rounded-2xl p-5 md:p-6 card-hover border-l-4 border-l-indigo-600 relative overflow-hidden bg-gradient-to-r from-indigo-50/70 via-white to-purple-50/40 dark:from-indigo-950/40 dark:via-gray-900/60 dark:to-purple-950/20">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div class="flex items-start gap-3.5">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/25">
+                        <i data-lucide="compass" class="w-6 h-6 animate-pulse"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-base font-extrabold text-gray-900 dark:text-white">Smart Student Radar</h2>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Active Assistant</span>
+                        </div>
+                        <p class="text-xs text-gray-600 dark:text-gray-300 mt-1 max-w-xl">
+                            Autonomous academic planner synchronized with your assignments, today's lecture schedule, and 75% attendance threshold rules.
+                        </p>
+                        
+                        <!-- Quick Metrics Tags -->
+                        <div class="flex flex-wrap items-center gap-2 mt-3 text-[11px] font-medium">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 font-bold border border-rose-200/60 dark:border-rose-900/60">
+                                <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                Top Priority: CS 301 Raft Cluster (Due Tomorrow)
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 font-bold border border-amber-200/60 dark:border-amber-900/60">
+                                <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+                                Attendance Watch: MAT 312 (Max 2 skips)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2.5 shrink-0">
+                    <button onclick="navigateTo('radar')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-md shadow-indigo-600/20 active:scale-95 transition-all">
+                        <span>Launch Radar & Plan</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <!-- Main Dashboard Split Grid -->
@@ -1655,7 +1703,10 @@ function handleGlobalSearch(query) {
         e.category.toLowerCase().includes(q)
     );
 
-    const totalResults = matchedCourses.length + matchedAssignments.length + matchedEvents.length;
+    // Search feature modules
+    const isRadarMatch = 'smart student radar daily plan priority assistant attendance'.includes(q);
+
+    const totalResults = matchedCourses.length + matchedAssignments.length + matchedEvents.length + (isRadarMatch ? 1 : 0);
 
     if (totalResults === 0) {
         resultsContainer.innerHTML = `
@@ -1666,6 +1717,19 @@ function handleGlobalSearch(query) {
     } else {
         resultsContainer.innerHTML = `
             <div class="p-2 space-y-2">
+                ${isRadarMatch ? `
+                    <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 px-2 pt-1">Smart Assistant</div>
+                    <div onclick="navigateTo('radar'); closeSearchDropdown()" class="p-2 rounded-lg bg-indigo-50/60 dark:bg-indigo-950/40 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 cursor-pointer flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="compass" class="w-4 h-4 text-indigo-500"></i>
+                            <div>
+                                <span class="font-bold text-indigo-600 dark:text-indigo-400">Smart Student Radar:</span>
+                                <span class="text-gray-800 dark:text-gray-200 font-medium">Daily Action Plan & Priorities</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-200 dark:bg-indigo-800 text-indigo-800 dark:text-indigo-200">Open</span>
+                    </div>
+                ` : ''}
                 ${matchedCourses.length > 0 ? `
                     <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 px-2 pt-1">Courses</div>
                     ${matchedCourses.map(c => `

@@ -31,6 +31,7 @@ campuspulse/
 ├── js/
 │   ├── data.js             # Client fallback mock database (courses, student, events)
 │   ├── api.js              # REST API bridge with graceful offline fallback
+│   ├── radar.js            # Smart Student Radar & Daily Action Plan engine
 │   └── app.js              # State manager, dynamic router, Chart.js engine & toasts
 ├── server/                 # Node.js + Express REST API Backend
 │   ├── server.js           # Express app, CORS, request logger & static server
@@ -70,3 +71,4 @@ campuspulse/
 2. **Persistent Document Storage**: Real assignment submissions and RSVP updates are saved to the persistent database store and survive server restarts.
 3. **University Compliance Logic**: Features a dynamic safe-margin skip calculator based on the official 75% attendance threshold.
 4. **Team-Ready Modular Design**: Separated API routes and sync scripts allowing multiple team members to build features simultaneously.
+5. **CampusPulse Smart Student Radar**: An autonomous daily assistant that ranks tasks by deadline urgency, flags subjects at attendance risk with exact consecutive-skip mathematics, and generates conflict-free daily plans around official lectures.
